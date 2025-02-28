@@ -3,54 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Navbar with Dropdown & Carousel</title>
+    <title>Band Website</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     <style>
         /* Navbar Styling */
         .navbar {
-            background-color: #222; /* Dark background */
+            background-color: #222;
             border: none;
             margin-bottom: 0;
         }
-        .navbar-brand, .navbar-nav li a {
+        .navbar-nav {
+            float: right !important;
+        }
+        .navbar-nav > li > a {
             color: white !important;
             font-size: 16px;
-            letter-spacing: 1px;
+            padding: 15px 20px;
         }
-        .navbar-nav > li > a:hover, .navbar-nav > .active > a {
-            background-color: #444 !important;
+        .navbar-brand img {
+            height: 40px;
         }
-        .dropdown-menu {
-            background-color: #333;
+        .navbar-form {
+            padding: 8px;
+            margin-right: 50px; /* Moves search bar slightly left */
         }
-        .dropdown-menu > li > a {
-            color: white !important;
+        .form-control {
+            width: 200px;
         }
-        .dropdown-menu > li > a:hover {
-            background-color: #555 !important;
-        }
-        .navbar-nav .search-icon {
-            padding: 15px 15px;
-            font-size: 18px;
-            cursor: pointer;
+        /* Tour Section */
+        #tour {
+            text-align: center;
+            background-color: #222;
             color: white;
+            padding: 50px;
         }
-        .navbar-nav .search-icon:hover {
-            color: #ddd;
-        }
-        .carousel-caption {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 10px;
+        .tour-dates {
+            background-color: white;
+            color: black;
+            width: 60%;
+            margin: 0 auto;
+            padding: 20px;
             border-radius: 5px;
+        }
+        .sold-out {
+            background-color: #d9534f;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .tour-card {
+            background: white;
+            color: black;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px;
+            text-align: center;
+        }
+        .tour-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .btn-buy {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -58,13 +95,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>                        
             </button>
-            <a class="navbar-brand" href="#"><img src="images/band-logo.jfif" style="height:40px"alt=""></a>
+            <a class="navbar-brand" href="#"><img src="images/band-logo.jfif" alt="Logo"></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="#">HOME</a></li>
-                <li><a href="#">BAND</a></li>
-                <li><a href="#">TOUR</a></li>
+                <li><a href="#about">About us</a></li>
+                <li><a href="#tour">TOUR</a></li>
                 <li><a href="#">CONTACT</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">MORE <span class="caret"></span></a>
@@ -74,12 +111,14 @@
                         <li><a href="#">Media</a></li>
                     </ul>
                 </li>
-                <form class="navbar-form navbar-left" action="/action_page.php">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Search" name="search">
-                      <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit">
-                          <i class="glyphicon glyphicon-search"></i>
+                <li>
+                    <form class="navbar-form navbar-right" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                    </form>
+                </li>
             </ul>
         </div>
     </div>
@@ -87,14 +126,12 @@
 
 <!-- Carousel -->
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
 
-    <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
             <img src="images/chicago.jpg" class="d-block" style="height:500px;width:100%" alt="home-essential">
@@ -121,15 +158,62 @@
         </div>
     </div>
 
-    <!-- Left and right controls -->
     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>
-        <span class="sr-only">Previous</span>
     </a>
     <a class="right carousel-control" href="#myCarousel" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right"></span>
-        <span class="sr-only">Next</span>
     </a>
+</div>
+
+<!-- The Band Section -->
+<div id="about" class="container text-center" style="padding: 50px;">
+    <h2>THE BAND</h2>
+    <p><em>We love music!</em></p>
+    <p>We have created a fictional band website.</p>
+</div>
+
+<!-- Tour Section -->
+<div id="tour">
+    <h2>TOUR DATES</h2>
+    <p><em>Lorem ipsum we'll play you some music.<br>Remember to book your tickets!</em></p>
+    
+    <!-- Ticket Availability -->
+    <div class="tour-dates">
+        <p>September <span class="sold-out">Sold Out!</span></p>
+        <p>October <span class="sold-out">Sold Out!</span></p>
+        <p>November <span class="badge">3</span></p>
+    </div>
+
+    <!-- Tour Locations -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="tour-card">
+                    <img src="images/paris.jpg" alt="Paris">
+                    <h4><i>Paris</i></h4>
+                    <p>Friday 27 November 2015</p>
+                    <button class="btn btn-buy">Buy Tickets</button>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="tour-card">
+                    <img src="images/newyork.jpg" alt="New York">
+                    <h4><i>New York</i></h4>
+                    <p>Saturday 28 November 2015</p>
+                    <button class="btn btn-buy">Buy Tickets</button>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="tour-card">
+                    <img src="images/sanfrancisco.jpg" alt="San Francisco">
+                    <h4><i>San Francisco</i></h4>
+                    <p>Sunday 29 November 2015</p>
+                    <button class="btn btn-buy">Buy Tickets</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>
